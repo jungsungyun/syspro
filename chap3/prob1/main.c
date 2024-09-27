@@ -1,41 +1,48 @@
-#include <stdio.h>
 #include "copy.h"
+#include <stdio.h>
 #include <string.h>
+
 char line[MAXLINE];
-char longest[MAXLINE];	
+char sentences[5][MAXLINE];
+int len[5];
 
-void copy(char form[], char to []);
-
+void copy(char from[], char to[]);
 
 int main() {
-
-	int len;
-	int max;
-	max = 0;
+    int i, j;
+    char temp[MAXLINE];
 
 
+    for (i = 0; i < 5; i++) {
+
+        fgets(line, MAXLINE, stdin);
+        line[strcspn(line, "\n")] = '\0';
+        copy(line, sentences[i]); 
+        len[i] = strlen(sentences[i]);
+    }
+
+
+    for (i = 0; i < 4; i++) {
+        for (j = i + 1; j < 5; j++) {
+            if (len[i] < len[j]) {
+
+                copy(sentences[i], temp);
+                copy(sentences[j], sentences[i]);
+                copy(temp, sentences[j]);
+
+
+                int temp_len = len[i];
+                len[i] = len[j];
+                len[j] = temp_len;
+            }
+        }
+    }
 
 
 
-	while(fgets(line,MAXLINE,stdin) != NULL) {
+    for (i = 0; i < 5; i++) {
+        printf("%s  %d\n", sentences[i], len[i]);
+    }
 
-	{
-		
-		
-
-		len = strlen(line);
-
-		if(len > max)
-		{
-			max = len;
-			copy(line, longest);
-		}
-	}
-
-	if(max > 0)
-		printf("%s \n", longest);
-	return 0;
-
-	
-	}
-	}
+    return 0;
+}

@@ -1,0 +1,8 @@
+ id  name          category   expired date     stock
+  1   SpecialTea    tea           2024            1
+  2   Espresso      coffee        2023            20
+  3   CafeLatte     coffee        2022            20
+  4   IcedAmericano coffee        2026            100
+  5   Ice Tea       tea           2022            23
+  6   Java Tea      tea           2023            0
+
